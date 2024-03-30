@@ -1,0 +1,220 @@
+.cart-containeer {
+  background-color: rgb(240, 238, 238);
+  width: 1270px;
+  height: auto;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  display: flex;
+  gap: 50px;
+}
+.cart-items {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  margin-left: 20px;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+.cart-header {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.cart-header h3 {
+  font-size: 26px;
+  font-weight: bold;
+}
+.cart-header p {
+  font-family: cursive;
+}
+.cart-header .backtoshopping {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.cart-header .backtoshopping p {
+  margin-top: 14px;
+}
+.cart-header .backtoshopping a {
+  color: rgb(2, 145, 64);
+}
+.cart-items .items {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  background-color: white;
+  height: 120px;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  margin-bottom: 20px;
+}
+.cart-items .items .img-container {
+  height: 100px;
+  width: 120px;
+  background-color: rgb(2, 145, 64);
+  margin-left: 10px;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+.cart-items .items img {
+  margin: 10px 10px;
+  width: 100px;
+  height: 80px;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+.cart-items .items .item-details {
+  margin-top: 20px;
+}
+.cart-items .items .item-details h5 {
+  font-weight: bold;
+}
+.cart-items .items .item-details p {
+  color: gray;
+  font-weight: bold;
+}
+
+.cart-items .items .count {
+  margin-left: 40px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.cart-items .items .count:hover i {
+  cursor: pointer;
+}
+.cart-items .items .count input {
+  margin-left: 0px;
+  width: 40px;
+  height: 30px;
+  border: 1px solid gray;
+  text-align: center;
+}
+.item-price {
+  margin-left: 30px;
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+.item-price h4 {
+  margin-top: 10px;
+}
+.item-price i {
+  color: rgb(2, 145, 64);
+  margin-right: 10px;
+}
+.item-price i:hover {
+  color: red;
+  cursor: pointer;
+}
+/* payment */
+.CardDetails {
+  width: 42%;
+  height: 115vh;
+  background-color: rgb(26, 2, 49);
+  margin-top: 30px;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  color: white;
+  margin-bottom: 30px;
+}
+.CardDetails .Card-title h3 {
+  font-size: 26px;
+  font-weight: bold;
+  margin: 10px 20px;
+}
+.cardtype {
+  margin-left: 20px;
+}
+.cardtype h5 {
+  margin-top: 25px;
+  font-size: 18px;
+}
+.cardtype .images {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+.cardtype .images div img {
+  width: 100px;
+  height: 100px;
+  background-color: transparent;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+.card-inputs div input {
+  margin-left: 0;
+  background-color: rgb(32, 7, 56);
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  width: 95%;
+  text-indent: 5px;
+}
+.card-inputs .smallinputs {
+  display: flex;
+  gap: 20px;
+}
+.card-inputs .smallinputs div input {
+  width: 100%;
+}
+.card-line {
+  width: 95%;
+  height: 2px;
+  background-color: white;
+  margin-top: 30px;
+}
+.card-price div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.card-price div h4 {
+  margin-right: 20px;
+  margin-top: 20px;
+}
+.card-price div {
+  margin-top: -15px;
+}
+.CardDetails button {
+  margin-left: 0px;
+  border: none;
+  outline: none;
+  background-color: rgb(2, 145, 64);
+  color: white;
+  width: 96%;
+  height: 50px;
+  margin-top: 20px;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}

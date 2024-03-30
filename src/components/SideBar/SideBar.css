@@ -1,0 +1,67 @@
+.sidebar {
+  position: relative;
+  margin-top: 10px;
+  margin-left: 10px;
+  width: 200px;
+  height: 95vh;
+  background-color: rgb(2, 145, 64);
+  text-align: center;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+.sidebar img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  margin-top: 30px;
+}
+.sidebar h1 {
+  margin-top: 5px;
+  font-size: 26px;
+  color: white;
+  font-family: cursive;
+}
+.line {
+  width: 150px;
+  height: 2px;
+  background-color: white;
+  margin: auto;
+  margin-bottom: 20px;
+}
+.sidebar .item-links {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: start;
+  margin-left: 20px;
+  color: white;
+}
+.sidebar .item-links a {
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+}
+.sidebar .item-links a:focus {
+  color: black;
+}
+
+.sidebar .item-links p {
+  font-size: 20px;
+  cursor: pointer;
+}
+.sidebar .item-links i {
+  font-size: 17px;
+  margin-bottom: 14px;
+  cursor: pointer;
+}
+.sidebar .logout {
+  position: absolute;
+  bottom: 0px;
+}

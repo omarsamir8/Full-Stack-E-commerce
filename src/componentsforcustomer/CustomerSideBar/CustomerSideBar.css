@@ -1,0 +1,74 @@
+.sidebar2 {
+  position: relative;
+  margin-top: 10px;
+  margin-left: 10px;
+  width: 50px;
+  height: 85vh;
+  background-color: rgb(2, 145, 64);
+  text-align: center;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}
+.sidebar2 img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  margin-top: 30px;
+}
+.sidebar2 h1 {
+  margin-top: 5px;
+  font-size: 26px;
+  color: white;
+  font-family: cursive;
+}
+.sidebar2 .line {
+  width: 40px;
+  height: 2px;
+  background-color: white;
+  margin: auto;
+  margin-top: 10px;
+  margin-bottom: 15px;
+}
+.sidebar2 .item-links {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  align-items: center;
+  justify-content: start;
+  /* margin-left: 20px; */
+  color: white;
+}
+.sidebar2 .item-links a {
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 30px;
+  margin-left: -5px;
+}
+.sidebar2 .item-links a:focus {
+  color: black;
+}
+
+.sidebar2 .item-links p {
+  font-size: 20px;
+  cursor: pointer;
+}
+.sidebar2 .item-links i {
+  font-size: 25px;
+  margin-bottom: 14px;
+  cursor: pointer;
+}
+.sidebar2 .logout {
+  position: absolute;
+  left: 12px;
+  bottom: 0px;
+}

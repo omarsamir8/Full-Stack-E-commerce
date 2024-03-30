@@ -1,0 +1,115 @@
+.section-p1 h1 {
+  font-size: 50px;
+  line-height: 64px;
+  color: #222;
+}
+.section-p1 h2 {
+  font-size: 36px;
+  line-height: 54px;
+  color: #222;
+}
+.section-p1 h4 {
+  font-size: 20px;
+  color: #222;
+}
+.section-p1 h6 {
+  font-weight: 700px;
+  font-size: 12px;
+}
+.section-p1 p {
+  font-size: 16px;
+  color: #222;
+  margin: 15px 0 20px 0;
+}
+.section-p1.section-p1 {
+  padding: 40px 0px;
+}
+.section-p1 .section-m1 {
+  margin: 40px 0px;
+}
+.section-p1 button.normal {
+  font-size: 14px;
+  font-weight: 600px;
+  padding: 15px 30px;
+  color: #fff;
+  background-color: rgb(2, 145, 64);
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  transition: 0.3s;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -ms-transition: 0.3s;
+  -o-transition: 0.3s;
+}
+button.white {
+  font-size: 14px;
+  font-weight: 600px;
+  padding: 11px 18px;
+  color: #fff;
+  background-color: transparent;
+  cursor: pointer;
+  border: 1px solid #fff;
+  outline: none;
+  transition: 0.3s;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -ms-transition: 0.3s;
+  -o-transition: 0.3s;
+}
+#pro-details {
+  display: flex;
+  justify-content: space-between;
+}
+.single-pro-image {
+  width: 40%;
+  margin-right: 50px;
+}
+.small-img-groupe {
+  display: flex;
+  justify-content: space-between;
+}
+#MainImg {
+  margin-bottom: 4px;
+  cursor: pointer;
+}
+.small-img-col {
+  flex-basis: 24%;
+  cursor: pointer;
+}
+.single-pro-details {
+  width: 60%;
+  padding-top: 30px;
+}
+
+.single-pro-details h4 {
+  padding: 20px 0 20px 0;
+  font-weight: 600;
+}
+.single-pro-details h2 {
+  font-size: 26px;
+  font-weight: 600;
+}
+.single-pro-details select {
+  display: block;
+  padding: 5px 10px;
+  margin-bottom: 10px;
+}
+.single-pro-details input {
+  width: 50px;
+  height: 47px;
+  padding-left: 10px;
+  font-size: 16px;
+  margin-right: 10px;
+}
+.single-pro-details input:focus {
+  outline: none;
+}
+.single-pro-details button {
+  background-color: #027a72;
+}

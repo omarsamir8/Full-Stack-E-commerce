@@ -1,0 +1,97 @@
+.registration {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin: auto;
+  background-color: rgb(2, 145, 64);
+  color: white;
+}
+.registration .reg-form {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  gap: 10px;
+  height: 100vh;
+}
+.registration .reg-form h2 {
+  font-size: 36px;
+  font-weight: bold;
+  margin-left: -20px;
+}
+.registration .reg-form p {
+  font-size: 20px;
+  font-weight: bold;
+  margin-left: -20px;
+}
+.registration .reg-form form {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 5px;
+}
+.registration .reg-form form label,
+input,
+button {
+  font-size: 20px;
+  margin-left: 20px;
+}
+.registration .reg-form form input {
+  width: 90%;
+  margin-top: 5px;
+  height: 40px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  text-indent: 10px;
+}
+.registration .reg-form form select {
+  width: 90%;
+  margin: auto;
+  margin-left: 20px;
+  margin-top: 5px;
+}
+.registration .reg-form form p {
+  margin-left: 20px;
+}
+.registration .reg-form form a {
+  color: red;
+  margin-left: 5px;
+}
+.registration .reg-form form button {
+  width: 90%;
+  height: 50px;
+  border: none;
+  outline: none;
+  color: white;
+  background-color: darkgreen;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  transition: 0.3s;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -ms-transition: 0.3s;
+  -o-transition: 0.3s;
+}
+.registration .reg-form form button:hover {
+  background-color: rgb(2, 131, 2);
+}
+.registration .reg-img img {
+  height: 95vh;
+  width: 450px;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+}

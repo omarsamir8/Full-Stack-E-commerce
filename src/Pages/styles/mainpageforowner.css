@@ -1,0 +1,10 @@
+.mainpageforowner {
+  display: flex;
+  gap: 10px;
+}
+.sidebaar {
+  position: fixed;
+}
+.mainpage {
+  margin-left: 220px;
+}
