@@ -6,7 +6,8 @@ import Swal from "sweetalert2";
 
 function ProductDetails() {
   const { productId } = useParams();
-  const [product, setProduct] = useState(null);
+  const [product, setProduct] = useState([]);
+
   let index = 0;
   const accessToken = localStorage.getItem("token");
   const refreshToken = localStorage.getItem("refreshToken");
@@ -34,14 +35,14 @@ function ProductDetails() {
   const AddtoCart = async (productId, quantity) => {
     try {
       const response = await fetch(
-        `https://mohamed-apis.vercel.app/card/addToCart&productId=${productId}&quantity=${quantity}`,
+        `https://mohamed-apis.vercel.app/card/addToCart`,
         {
           method: "POST",
           headers: {
             Authorization: `Bearer ${accessToken}`,
             "refresh-token": refreshToken,
           },
-          // body: JSON.stringify(productId, quantity),
+          body: JSON.stringify({ productId, quantity }),
         }
       );
 

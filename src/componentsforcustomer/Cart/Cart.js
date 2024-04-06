@@ -109,11 +109,14 @@ function Cart() {
             return (
               <div className="items animate__animated animate__fadeInDown">
                 <div className="img-container">
-                  <img src={cart?.Images?.[index]?.secure_url} alt="" />
+                  <img
+                    src={cart?.productId?.Images?.[index]?.secure_url}
+                    alt=""
+                  />
                 </div>
                 <div className="item-details">
-                  <h5>{cart.title}</h5>
-                  <p>{cart.desc}</p>
+                  <h5>{cart.productId.title}</h5>
+                  <p>{cart.productId.desc}</p>
                 </div>
                 <div className="count">
                   <i
@@ -131,7 +134,7 @@ function Cart() {
                   ></i>
                 </div>
                 <div className="item-price">
-                  <h4>${cart.priceAfterDiscount}</h4>
+                  <h4>${cart.productId.priceAfterDiscount}</h4>
                   <i
                     onClick={() => deleteproductfromcart(cart._id)}
                     class="fa-solid fa-trash"
