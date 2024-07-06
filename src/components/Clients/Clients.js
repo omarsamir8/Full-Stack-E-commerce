@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from "react";
 import "./Clients.css";
 import axios from "axios";
+import Swal from "sweetalert2";
 function Clients() {
-  const [userData, setuserData] = useState([]);
+  const [Allclients, setAllclients] = useState([]);
+  const [firstName, setfirstName] = useState("");
   const accessToken = localStorage.getItem("token");
   const refreshToken = localStorage.getItem("refreshToken");
 
+  // get clients data
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchclentData = async () => {
       try {
         const response = await axios.get(
-          "https://ecommerce-alpha-ivory.vercel.app/user/getuser",
+          `https://mohamed-apis.vercel.app/user/searchusers?page=1&size=9&sort=${firstName}`,
           {
             headers: {
               Authorization: `Bearer ${accessToken}`,
@@ -19,14 +22,54 @@ function Clients() {
           }
         );
         console.log(response.data);
-        setuserData(response.data.user);
+        setAllclients(response.data.result);
       } catch (error) {
         console.error("Error fetching admin info:", error);
       }
     };
 
-    fetchData();
+    fetchclentData();
   }, [accessToken, refreshToken]);
+  console.log(Allclients);
+
+  // delete category
+  const deleteClient = async (clientId) => {
+    try {
+      const confirmed = await Swal.fire({
+        title: "Are you sure?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#3085d6",
+        confirmButtonText: "Yes, delete it!",
+      });
+      if (confirmed.isConfirmed) {
+        const response = await fetch(
+          `https://mohamed-apis.vercel.app/user/delete?userId=${clientId}`,
+          {
+            method: "DELETE",
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+              "refresh-token": refreshToken,
+            },
+          }
+        );
+
+        if (response.ok) {
+          // On success, update the state to remove the deleted course
+          setAllclients((prevClient) =>
+            prevClient.filter((client) => client._id !== clientId)
+          );
+          console.log(`Course with ID ${clientId} deleted successfully.`);
+        } else {
+          console.error(`Failed to delete course with ID ${clientId}.`);
+        }
+      }
+    } catch (error) {
+      console.error("Delete failed", error);
+    }
+  };
+
   return (
     <>
       <div className="clients">
@@ -49,6 +92,11 @@ function Clients() {
               type="text"
               placeholder="Search"
               aria-label=".form-control-sm example"
+              name="firstName"
+              value={firstName}
+              onChange={(e) => {
+                setfirstName(e.target.value);
+              }}
             />
           </div>
           <div className="stauts">
@@ -86,193 +134,42 @@ function Clients() {
           style={{ marginTop: "20px", borderRadius: "5px" }}
           className="orders-table"
         >
-          <table class="table ">
+          <table style={{ textAlign: "center" }} class="table ">
             <thead style={{ background: "rgb(238, 235, 235)" }}>
               <tr>
                 <th scope="col">#ID</th>
                 <th scope="col">Name</th>
-                <th scope="col">City/Statue</th>
-                <th scope="col">Infomations</th>
+                <th scope="col">Statue</th>
+                <th scope="col">Email</th>
+                <th scope="col">Gender</th>
                 <th scope="col">Control</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">CLI-0001</th>
-                <td>Omar Samir</td>
-                <td>Banha</td>
-                <td>OmarSamir@gmail.com</td>
-                <td>
-                  {" "}
-                  <button
-                    style={{ width: "100%", margin: "0" }}
-                    type="button"
-                    class="btn btn-success"
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">CLI-0002</th>
-                <td>Kevin De Bruyne </td>
-                <td>ManCity </td>
-                <td>OmarSamir@gmail.com</td>
-                <td>
-                  {" "}
-                  <button
-                    style={{ width: "100%", margin: "0" }}
-                    type="button"
-                    class="btn btn-success"
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">CLI-0003</th>
-                <td>Nymar Junior </td>
-                <td>Barazil</td>
-                <td>Nymar@gmail.com</td>
-                <td>
-                  {" "}
-                  <button
-                    style={{ width: "100%", margin: "0" }}
-                    type="button"
-                    class="btn btn-success"
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">CLI-0004</th>
-                <td>Elky Goundogan </td>
-                <td>Barchelona</td>
-                <td>Goundogan@gmail.com</td>
-                <td>
-                  {" "}
-                  <button
-                    style={{ width: "100%", margin: "0" }}
-                    type="button"
-                    class="btn btn-success"
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">CLI-0005</th>
-                <td>Bernaldo Silva </td>
-                <td>Mancity</td>
-                <td>Bernaldo@gmail.com</td>
-                <td>
-                  {" "}
-                  <button
-                    style={{ width: "100%", margin: "0" }}
-                    type="button"
-                    class="btn btn-success"
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">CLI-0006</th>
-                <td>Ahmed Adel </td>
-                <td>Cairo</td>
-                <td>AhmedAdel@gmail.com</td>
-                <td>
-                  {" "}
-                  <button
-                    style={{ width: "100%", margin: "0" }}
-                    type="button"
-                    class="btn btn-success"
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">CLI-0007</th>
-                <td>Edin Hazard</td>
-                <td>Chelse</td>
-                <td>Hazard@gmail.com</td>
-                <td>
-                  {" "}
-                  <button
-                    style={{ width: "100%", margin: "0" }}
-                    type="button"
-                    class="btn btn-success"
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">CLI-0008</th>
-                <td>Luka Modric </td>
-                <td>Real Madrid</td>
-                <td>LukaModric@gmail.com</td>
-                <td>
-                  {" "}
-                  <button
-                    style={{ width: "100%", margin: "0" }}
-                    type="button"
-                    class="btn btn-success"
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">CLI-0009</th>
-                <td>Andres Insta </td>
-                <td>Banha</td>
-                <td>AndresInsta@gmail.com</td>
-                <td>
-                  {" "}
-                  <button
-                    style={{ width: "100%", margin: "0" }}
-                    type="button"
-                    class="btn btn-success"
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">CLI-0010</th>
-                <td>Leo Meesi</td>
-                <td>Agrantina</td>
-                <td>Meesi@gmail.com</td>
-                <td>
-                  {" "}
-                  <button
-                    style={{ width: "100%", margin: "0" }}
-                    type="button"
-                    class="btn btn-success"
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">CLI-0011</th>
-                <td>Kun Aguaro</td>
-                <td>ManCity</td>
-                <td>Aguaro@gmail.com</td>
-                <td>
-                  {" "}
-                  <button
-                    style={{ width: "100%", margin: "0" }}
-                    type="button"
-                    class="btn btn-success"
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
+              {Allclients.map((client, index) => {
+                return (
+                  <tr>
+                    <th scope="row">CLI-0{index}</th>
+                    <td>{client.userName}</td>
+                    <td>{client.status}</td>
+                    <td>{client.email}</td>
+                    <td>{client.gender}</td>
+                    <td>
+                      {" "}
+                      <button
+                        style={{ width: "100%", margin: "0" }}
+                        type="button"
+                        class="btn btn-success"
+                        onClick={() => {
+                          deleteClient(client._id);
+                        }}
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>

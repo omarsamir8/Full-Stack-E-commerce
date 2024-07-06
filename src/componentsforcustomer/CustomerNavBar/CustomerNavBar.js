@@ -66,7 +66,7 @@ function CustomerNavBar() {
               </h1>
             </span>
             <Link
-              style={{ marginRight: "-240px", marginBottom: "5px" }}
+              style={{ marginRight: "-220px", marginBottom: "5px" }}
               onClick={() => {
                 setSelectedComponent("Cart");
               }}

@@ -7,6 +7,7 @@ import Login from "./Pages/Login";
 import MainPageForOwner from "./Pages/MainPageForOwner";
 import MainPageForCustomer from "./Pages/MainPageForCustomer";
 import ProductDetails from "./componentsforcustomer/ProductDetails/ProductDetails";
+import SuccessOrder from "./componentsforcustomer/SuccessOrder/SuccessOrder";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/registration" element={<Registrations />} />
           <Route path="/mainpageforowner" element={<MainPageForOwner />} />
           <Route path="/mainpageforuser" element={<MainPageForCustomer />} />
+          <Route path="/order/success_url/:key" element={<SuccessOrder />} />
           <Route
             path="/mainpageforuser/:productId"
             element={<ProductDetails />}

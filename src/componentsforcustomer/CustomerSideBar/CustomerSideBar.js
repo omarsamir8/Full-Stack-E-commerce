@@ -26,19 +26,18 @@ function CustomerSideBar() {
         <div className="item-links">
           <Link
             onClick={() => {
+              setSelectedComponent("Orders");
+            }}
+          >
+            <i class="fa-brands fa-jedi-order"></i>
+          </Link>{" "}
+          <Link
+            onClick={() => {
               setSelectedComponent("Products");
             }}
           >
             <i class="fa-brands fa-product-hunt"></i>
           </Link>
-          <Link
-            onClick={() => {
-              setSelectedComponent("Orders");
-            }}
-          >
-            <i class="fa-brands fa-jedi-order"></i>
-          </Link>
-
           <Link
             onClick={() => {
               setSelectedComponent("Cart");

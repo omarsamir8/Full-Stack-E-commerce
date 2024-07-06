@@ -61,3 +61,7 @@ select {
   margin-left: 20px;
   font-size: 18px;
 }
+.mostpopularproduct {
+  height: 150px;
+  padding-right: 10px;
+}

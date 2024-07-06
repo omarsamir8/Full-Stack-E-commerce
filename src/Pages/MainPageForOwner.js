@@ -8,9 +8,10 @@ import { useRecoilState } from "recoil";
 import { $Dashboard_Components } from "../Atoms";
 import Orders from "../components/Orders/Orders";
 import Clients from "../components/Clients/Clients";
-import ClientReports from "../components/ClientReports/ClientReports";
+import ClientReports from "../components/ClientReports/ClientReports"; // Removed this line
 import Category from "../components/Category/Category";
 import Products from "../components/Products/Products";
+import CreateCoupons from "../components/Coupon/Coupon";
 
 function MainPageForOwner() {
   const [selectedComponent, setSelectedComponent] = useRecoilState(
@@ -28,9 +29,11 @@ function MainPageForOwner() {
             {selectedComponent === "Dashboard" && <Dashboard />}
             {selectedComponent === "Order" && <Orders />}
             {selectedComponent === "Clients" && <Clients />}
-            {selectedComponent === "ClientReports" && <ClientReports />}
+            {selectedComponent === "ClientReports" && <ClientReports />}{" "}
+            {/* Removed this line */}
             {selectedComponent === "Category" && <Category />}
             {selectedComponent === "Products" && <Products />}
+            {selectedComponent === "Coupon" && <CreateCoupons />}
           </div>
         </div>
       </div>

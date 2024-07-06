@@ -4,6 +4,8 @@ import { Link, useParams } from "react-router-dom";
 import CustomerNavBar from "../CustomerNavBar/CustomerNavBar";
 import Swal from "sweetalert2";
 
+import axios from "axios";
+
 function ProductDetails() {
   const { productId } = useParams();
   const [product, setProduct] = useState([]);
@@ -33,36 +35,37 @@ function ProductDetails() {
 
   // add to cart
   const AddtoCart = async (productId, quantity) => {
+    console.log(productId, quantity);
     try {
-      const response = await fetch(
-        `https://mohamed-apis.vercel.app/card/addToCart`,
+      const response = await axios.post(
+        "https://mohamed-apis.vercel.app/card/addToCart",
         {
-          method: "POST",
+          productId,
+          quantity,
+        },
+        {
           headers: {
             Authorization: `Bearer ${accessToken}`,
             "refresh-token": refreshToken,
           },
-          body: JSON.stringify({ productId, quantity }),
         }
       );
-
-      if (response.ok) {
+      console.log(response.data);
+      if (response.status === 200) {
         Swal.fire({
           icon: "success",
           title: " Product Added To Cart Successful!",
           text: "You have successfully Added Product.",
         });
       } else {
-        const errorData = await response.json();
-        console.log(errorData);
         Swal.fire({
-          icon: "error",
-          title: "Add Product To Cart Failed",
-          text: errorData.message || "Something went wrong.",
+          icon: "Failed",
+          title: " Failed To Added Product to Cart!",
+          text: "Failed To Added Product to Cart!",
         });
       }
     } catch (error) {
-      console.error("Error:", error);
+      console.error("Error ", error);
     }
   };
 
@@ -118,7 +121,7 @@ function ProductDetails() {
               </select>
               <input style={{ marginLeft: "0px" }} type="number" value="1" />
               <button
-                onClick={() => AddtoCart(product?._id, product?.stock)}
+                onClick={() => AddtoCart(product._id, 1)}
                 className="normal" // Changed class to className
               >
                 Add To Cart

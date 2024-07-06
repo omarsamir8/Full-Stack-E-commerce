@@ -5,5 +5,5 @@ export const $Dashboard_Components = atom({
 });
 export const $Dashboard_Componentss = atom({
   key: "Dashboard_Components",
-  default: "Products",
+  default: "Orders",
 });

@@ -51,16 +51,6 @@ function SideBar() {
           </Link>
         </div>
         <div className="item-links">
-          <i class="fa-regular fa-user"></i>
-          <Link
-            onClick={() => {
-              setSelectedComponent("ClientReports");
-            }}
-          >
-            <p>Clients Reports</p>
-          </Link>
-        </div>
-        <div className="item-links">
           <i class="fa-solid fa-layer-group"></i>
           <Link
             onClick={() => {
@@ -68,6 +58,16 @@ function SideBar() {
             }}
           >
             <p>Category</p>
+          </Link>
+        </div>
+        <div className="item-links">
+          <i class="fa-solid fa-layer-group"></i>
+          <Link
+            onClick={() => {
+              setSelectedComponent("Coupon");
+            }}
+          >
+            <p>Coupon</p>
           </Link>
         </div>
         <div className="item-links">

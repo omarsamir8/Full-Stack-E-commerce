@@ -28,7 +28,7 @@ function Registrations() {
     console.log(userData);
     try {
       const response = await fetch(
-        "https://ecommerce-alpha-ivory.vercel.app/user/register",
+        "https://mohamed-apis.vercel.app/user/register",
         {
           method: "POST",
           headers: {

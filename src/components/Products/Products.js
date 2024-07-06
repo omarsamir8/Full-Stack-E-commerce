@@ -20,10 +20,10 @@ function Products() {
   const [categoryId, setcategoryId] = useState("");
   const accessToken = localStorage.getItem("token");
   const refreshToken = localStorage.getItem("refreshToken");
+  console.log(size);
   // create product
   const CreateProduct = async (e) => {
     e.preventDefault();
-
     try {
       const formdata = new FormData();
       formdata.append("title", title);
@@ -71,7 +71,7 @@ function Products() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "https://mohamed-apis.vercel.app/product/getProduct?page=1&size=10",
+          "https://mohamed-apis.vercel.app/product/getProduct?page=1&size=20",
           {
             headers: {
               Authorization: `Bearer ${accessToken}`,
@@ -91,31 +91,41 @@ function Products() {
   // delete product
   const deleteproduct = async (productId) => {
     try {
-      const response = await fetch(
-        `https://mohamed-apis.vercel.app/product/deleteProduct?productId=${productId}`, // Corrected endpoint
-        {
-          method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-            "refresh-token": refreshToken,
-          },
-        }
-      );
-      console.log(response.data);
-      if (response.ok) {
-        setallproduct((prevProducts) =>
-          prevProducts.filter((product) => product._id !== productId)
+      const confirmed = await Swal.fire({
+        title: "Are you sure?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#3085d6",
+        confirmButtonText: "Yes, delete it!",
+      });
+      if (confirmed.isConfirmed) {
+        const response = await fetch(
+          `https://mohamed-apis.vercel.app/product/deleteProduct?productId=${productId}`, // Corrected endpoint
+          {
+            method: "DELETE",
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+              "refresh-token": refreshToken,
+            },
+          }
         );
-        console.log(`Product with ID ${productId} deleted successfully.`);
-      } else {
-        console.error(`Failed to delete product with ID ${productId}.`);
+        console.log(response.data);
+        if (response.ok) {
+          setallproduct((prevProducts) =>
+            prevProducts.filter((product) => product._id !== productId)
+          );
+          console.log(`Product with ID ${productId} deleted successfully.`);
+        } else {
+          console.error(`Failed to delete product with ID ${productId}.`);
+        }
       }
     } catch (error) {
       console.error("Delete failed", error);
     }
   };
 
-  // update prduct
+  // update prductz
   const updateProduct = async () => {
     try {
       const response = await fetch(
@@ -129,18 +139,17 @@ function Products() {
           },
           body: JSON.stringify({
             title,
-            image,
             price,
             appliedDiscount,
             stock,
             color,
-            size,
             desc,
             categoryId,
           }),
+          size,
         }
       );
-
+      const data = await response.json();
       if (response.ok) {
         // Show SweetAlert on success
         Swal.fire({
@@ -186,7 +195,9 @@ function Products() {
         Swal.fire({
           icon: "error",
           title: "Fail",
-          text: "Product update failed, please try again later",
+          text: data.error_Message
+            ? data.error_Message[0].message
+            : data.message,
           timer: 4500,
         });
       }
@@ -230,7 +241,10 @@ function Products() {
         >
           Products
         </h4>
-        <div className="product-search animate__animated animate__fadeInDown">
+        <div
+          style={{ width: "1090px" }}
+          className="product-search animate__animated animate__fadeInDown"
+        >
           <div className="seachforproduct">
             <h4 style={{ marginLeft: "20px" }}>Search For Products</h4>
             <input
@@ -274,7 +288,10 @@ function Products() {
             </select>
           </div>
         </div>
-        <div className="add-product animate__animated animate__fadeInDown">
+        <div
+          style={{ width: "1090px" }}
+          className="add-product animate__animated animate__fadeInDown"
+        >
           <div className="product-input">
             <label>Title</label>
             <input
@@ -327,20 +344,20 @@ function Products() {
                 height: "30px",
                 textIndent: "5px",
               }}
-              name="size"
+              name="color"
               value={size}
               onChange={(e) => {
-                setsize(e.target.value);
+                setsize([e.target.value]);
               }}
-              className="form-select"
+              className="form-select" // Changed to className
               aria-label="Default select example"
             >
-              <option hidden>Size</option>
-              <option value="s">S</option>
-              <option value="m">M</option>
-              <option value="l">L</option>
-              <option value="xl">XL</option>
-              <option value="xxl">XXL</option>
+              <option hidden>Select a Size</option>
+              {["s", "m", "l", "xl", "xxl"].map((colorOption, index) => (
+                <option key={index} value={colorOption.toLowerCase()}>
+                  {colorOption}
+                </option>
+              ))}
             </select>
           </div>
           <div className="product-input">
@@ -471,8 +488,11 @@ function Products() {
         >
           {allproduct.map((product) => {
             return (
-              <div class=" mostpopularproduct animate__animated animate__slideInRight">
-                <img src={product2} alt="" />
+              <div
+                style={{ paddingTop: "30px", paddingBottom: "30px" }}
+                class=" mostpopularproduct animate__animated animate__slideInRight"
+              >
+                <img src={product.Images[0].secure_url} alt="" />
                 <div
                   style={{ marginTop: "15px", fontWeight: "bold" }}
                   className="desc"

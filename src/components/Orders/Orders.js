@@ -1,6 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Orders.css";
+import axios from "axios";
 function Orders() {
+  const accessToken = localStorage.getItem("token");
+  const refreshToken = localStorage.getItem("refreshToken");
+  const [allorders, setallorders] = useState([]);
+  const fetchCartData = async () => {
+    try {
+      const response = await axios.get(
+        "https://mohamed-apis.vercel.app/order/get/orders",
+        {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+            "refresh-token": refreshToken,
+          },
+        }
+      );
+      console.log(response.data);
+      setallorders(response.data.result);
+    } catch (error) {
+      console.error("Error fetching cart info:", error);
+    }
+  };
+
+  // Call fetchCartData initially to load cart data
+  useEffect(() => {
+    fetchCartData();
+  }, [accessToken, refreshToken]);
   return (
     <>
       <div className="orders">
@@ -39,8 +65,6 @@ function Orders() {
             <select class="form-select" aria-label="Default select example">
               <option hidden>Status</option>
               <option value="1">All</option>
-              {/* <option value="2">Cancelled</option>
-              <option value="3">Refunded</option> */}
             </select>
           </div>{" "}
           <div style={{ marginRight: "10px" }} className="Customer">
@@ -48,8 +72,6 @@ function Orders() {
             <select class="form-select" aria-label="Default select example">
               <option hidden>Customers</option>
               <option value="1">All</option>
-              {/* <option value="2">Cancelled</option>
-              <option value="3">Refunded</option> */}
             </select>
           </div>
         </div>
@@ -57,395 +79,55 @@ function Orders() {
           style={{ marginTop: "20px", borderRadius: "5px" }}
           className="orders-table"
         >
-          <table class="table">
+          <table style={{ textAlign: "center" }} class="table">
             <thead style={{ background: "rgb(238, 235, 235)" }}>
               <tr>
                 <th scope="col">OrderCode#</th>
-                <th scope="col">Date</th>
+                <th scope="col">Address</th>
                 <th scope="col">Status</th>
-                <th scope="col">Customer</th>
+                <th scope="col">Phone Number</th>
+                <th scope="col">Total</th>
+                <th scope="col">Payment Method</th>
                 <th scope="col">Controls</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <th scope="row">ORD-0001</th>
-                <td>Mar 16,2024</td>
-                <td>
-                  <div
-                    style={{
-                      background: "#90EE90",
-                      width: "80px",
-                      textAlign: "center",
-                      borderRadius: "5px",
-                      color: "rgb(2, 145, 64)",
-                    }}
-                  >
-                    <i class="fa-solid fa-check"></i> Paid
-                  </div>
-                </td>
-                <td>OmarSamir@gmail.com</td>
-                <td>
-                  <button
-                    style={{ width: "100%", margin: "0" }}
-                    type="button"
-                    class="btn btn-success"
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">ORD-0002</th>
-                <td>Feb 10,2024</td>
-                <td>
-                  <div
-                    style={{
-                      background: "#90EE90",
-                      width: "80px",
-                      textAlign: "center",
-                      borderRadius: "5px",
-                      color: "rgb(2, 145, 64)",
-                    }}
-                  >
-                    <i class="fa-solid fa-check"></i> Paid
-                  </div>
-                </td>
-                <td>OmarSamir@gmail.com</td>
-                <td>
-                  <button
-                    style={{ width: "100%", margin: "0" }}
-                    type="button"
-                    class="btn btn-success"
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">ORD-0003</th>
-                <td>Jan 28,2024</td>
-                <td>
-                  <div
-                    style={{
-                      background: "#90EE90",
-                      width: "80px",
-                      textAlign: "center",
-                      borderRadius: "5px",
-                      color: "rgb(2, 145, 64)",
-                    }}
-                  >
-                    <i class="fa-solid fa-check"></i> Paid
-                  </div>
-                </td>
-                <td>OmarSamir@gmail.com</td>
-                <td>
-                  <button
-                    style={{ width: "100%", margin: "0" }}
-                    type="button"
-                    class="btn btn-success"
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">ORD-0004</th>
-                <td>Jan 28,2024</td>
-                <td>
-                  <div
-                    style={{
-                      background: "#90EE90",
-                      width: "80px",
-                      textAlign: "center",
-                      borderRadius: "5px",
-                      color: "rgb(2, 145, 64)",
-                    }}
-                  >
-                    <i class="fa-solid fa-check"></i> Paid
-                  </div>
-                </td>
-                <td>OmarSamir@gmail.com</td>
-                <td>
-                  <button
-                    style={{ width: "100%", margin: "0" }}
-                    type="button"
-                    class="btn btn-success"
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">ORD-0005</th>
-                <td>Jan 28,2024</td>
-                <td>
-                  <div
-                    style={{
-                      background: "#90EE90",
-                      width: "80px",
-                      textAlign: "center",
-                      borderRadius: "5px",
-                      color: "rgb(2, 145, 64)",
-                    }}
-                  >
-                    <i class="fa-solid fa-check"></i> Paid
-                  </div>
-                </td>
-                <td>OmarSamir@gmail.com</td>
-                <td>
-                  <button
-                    style={{ width: "100%", margin: "0" }}
-                    type="button"
-                    class="btn btn-success"
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">ORD-0006</th>
-                <td>Jan 28,2024</td>
-                <td>
-                  <div
-                    style={{
-                      background: "#90EE90",
-                      width: "80px",
-                      textAlign: "center",
-                      borderRadius: "5px",
-                      color: "rgb(2, 145, 64)",
-                    }}
-                  >
-                    <i class="fa-solid fa-check"></i> Paid
-                  </div>
-                </td>
-                <td>OmarSamir@gmail.com</td>
-                <td>
-                  <button
-                    style={{ width: "100%", margin: "0" }}
-                    type="button"
-                    class="btn btn-success"
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">ORD-0007</th>
-                <td>Jan 28,2024</td>
-                <td>
-                  <div
-                    style={{
-                      background: "#90EE90",
-                      width: "80px",
-                      textAlign: "center",
-                      borderRadius: "5px",
-                      color: "rgb(2, 145, 64)",
-                    }}
-                  >
-                    <i class="fa-solid fa-check"></i> Paid
-                  </div>
-                </td>
-                <td>OmarSamir@gmail.com</td>
-                <td>
-                  <button
-                    style={{ width: "100%", margin: "0" }}
-                    type="button"
-                    class="btn btn-success"
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">ORD-0008</th>
-                <td>Jan 28,2024</td>
-                <td>
-                  <div
-                    style={{
-                      background: "#90EE90",
-                      width: "80px",
-                      textAlign: "center",
-                      borderRadius: "5px",
-                      color: "rgb(2, 145, 64)",
-                    }}
-                  >
-                    <i class="fa-solid fa-check"></i> Paid
-                  </div>
-                </td>
-                <td>OmarSamir@gmail.com</td>
-                <td>
-                  <button
-                    style={{ width: "100%", margin: "0" }}
-                    type="button"
-                    class="btn btn-success"
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">ORD-0009</th>
-                <td>Jan 28,2024</td>
-                <td>
-                  <div
-                    style={{
-                      background: "#90EE90",
-                      width: "80px",
-                      textAlign: "center",
-                      borderRadius: "5px",
-                      color: "rgb(2, 145, 64)",
-                    }}
-                  >
-                    <i class="fa-solid fa-check"></i> Paid
-                  </div>
-                </td>
-                <td>OmarSamir@gmail.com</td>
-                <td>
-                  <button
-                    style={{ width: "100%", margin: "0" }}
-                    type="button"
-                    class="btn btn-success"
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">ORD-0010</th>
-                <td>Jan 28,2024</td>
-                <td>
-                  <div
-                    style={{
-                      background: "#90EE90",
-                      width: "80px",
-                      textAlign: "center",
-                      borderRadius: "5px",
-                      color: "rgb(2, 145, 64)",
-                    }}
-                  >
-                    <i class="fa-solid fa-check"></i> Paid
-                  </div>
-                </td>
-                <td>OmarSamir@gmail.com</td>
-                <td>
-                  <button
-                    style={{ width: "100%", margin: "0" }}
-                    type="button"
-                    class="btn btn-success"
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">ORD-0011</th>
-                <td>Jan 28,2024</td>
-                <td>
-                  <div
-                    style={{
-                      background: "#90EE90",
-                      width: "80px",
-                      textAlign: "center",
-                      borderRadius: "5px",
-                      color: "rgb(2, 145, 64)",
-                    }}
-                  >
-                    <i class="fa-solid fa-check"></i> Paid
-                  </div>
-                </td>
-                <td>OmarSamir@gmail.com</td>
-                <td>
-                  <button
-                    style={{ width: "100%", margin: "0" }}
-                    type="button"
-                    class="btn btn-success"
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">ORD-0012</th>
-                <td>Jan 28,2024</td>
-                <td>
-                  <div
-                    style={{
-                      background: "#90EE90",
-                      width: "80px",
-                      textAlign: "center",
-                      borderRadius: "5px",
-                      color: "rgb(2, 145, 64)",
-                    }}
-                  >
-                    <i class="fa-solid fa-check"></i> Paid
-                  </div>
-                </td>
-                <td>OmarSamir@gmail.com</td>
-                <td>
-                  <button
-                    style={{ width: "100%", margin: "0" }}
-                    type="button"
-                    class="btn btn-success"
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">ORD-0013</th>
-                <td>Jan 28,2024</td>
-                <td>
-                  <div
-                    style={{
-                      background: "#90EE90",
-                      width: "80px",
-                      textAlign: "center",
-                      borderRadius: "5px",
-                      color: "rgb(2, 145, 64)",
-                    }}
-                  >
-                    <i class="fa-solid fa-check"></i> Paid
-                  </div>
-                </td>
-                <td>OmarSamir@gmail.com</td>
-                <td>
-                  <button
-                    style={{ width: "100%", margin: "0" }}
-                    type="button"
-                    class="btn btn-success"
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">ORD-0014</th>
-                <td>Jan 28,2024</td>
-                <td>
-                  <div
-                    style={{
-                      background: "#90EE90",
-                      width: "80px",
-                      textAlign: "center",
-                      borderRadius: "5px",
-                      color: "rgb(2, 145, 64)",
-                    }}
-                  >
-                    <i class="fa-solid fa-check"></i> Paid
-                  </div>
-                </td>
-                <td>OmarSamir@gmail.com</td>
-                <td>
-                  <button
-                    style={{ width: "100%", margin: "0" }}
-                    type="button"
-                    class="btn btn-success"
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
+              {allorders.map((order, index) => {
+                return (
+                  <tr>
+                    <th scope="row">ORD-000{index + 1}</th>
+                    <td>{order.address}</td>
+                    <td style={{ position: "relative" }}>
+                      <div
+                        style={{
+                          background: "#90EE90",
+                          width: "80px",
+                          textAlign: "center",
+                          borderRadius: "5px",
+                          color: "#fff",
+                          fontWeight: "bold",
+                          position: "absolute",
+                          left: "15px",
+                        }}
+                      >
+                        {order.orderStatus}
+                      </div>
+                    </td>
+                    <td>{order.phoneNumbers}</td>
+                    <td>{order.subTotal}</td>
+                    <td>{order.paymentMethod}</td>
+                    <td>
+                      <button
+                        style={{ width: "100%", margin: "0" }}
+                        type="button"
+                        class="btn btn-success"
+                      >
+                        Delete
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>

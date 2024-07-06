@@ -78,25 +78,35 @@ function Category() {
   // delete category
   const deletecategory = async (categoryid) => {
     try {
-      const response = await fetch(
-        `https://mohamed-apis.vercel.app/category/deleteCategory?categoryId=${categoryid}`,
-        {
-          method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-            "refresh-token": refreshToken,
-          },
-        }
-      );
-
-      if (response.ok) {
-        // On success, update the state to remove the deleted course
-        setallcategorys((prevCategory) =>
-          prevCategory.filter((category) => category._id !== categoryid)
+      const confirmed = await Swal.fire({
+        title: "Are you sure?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#3085d6",
+        confirmButtonText: "Yes, delete it!",
+      });
+      if (confirmed.isConfirmed) {
+        const response = await fetch(
+          `https://mohamed-apis.vercel.app/category/deleteCategory?categoryId=${categoryid}`,
+          {
+            method: "DELETE",
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+              "refresh-token": refreshToken,
+            },
+          }
         );
-        console.log(`Course with ID ${categoryid} deleted successfully.`);
-      } else {
-        console.error(`Failed to delete course with ID ${categoryid}.`);
+
+        if (response.ok) {
+          // On success, update the state to remove the deleted course
+          setallcategorys((prevCategory) =>
+            prevCategory.filter((category) => category._id !== categoryid)
+          );
+          console.log(`Course with ID ${categoryid} deleted successfully.`);
+        } else {
+          console.error(`Failed to delete course with ID ${categoryid}.`);
+        }
       }
     } catch (error) {
       console.error("Delete failed", error);
@@ -212,7 +222,10 @@ function Category() {
         >
           Category
         </h4>{" "}
-        <div className="category-search animate__animated animate__fadeInDown">
+        <div
+          style={{ width: "1090px" }}
+          className="category-search animate__animated animate__fadeInDown"
+        >
           <div className="seachforcategory">
             <h4>Search For Category</h4>
             <input
@@ -233,6 +246,7 @@ function Category() {
             height: "70px",
             display: "flex",
             gap: "10px",
+            width: "1090px",
           }}
           className="addcategory category-search animate__animated animate__fadeInDown"
         >

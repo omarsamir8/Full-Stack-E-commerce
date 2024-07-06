@@ -51,7 +51,7 @@
   gap: 30px;
   align-items: center;
   background-color: white;
-  height: 120px;
+  height: auto;
   border-radius: 10px;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
@@ -127,7 +127,7 @@
 /* payment */
 .CardDetails {
   width: 42%;
-  height: 115vh;
+  height: 470px;
   background-color: rgb(26, 2, 49);
   margin-top: 30px;
   border-radius: 10px;
@@ -217,4 +217,8 @@
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
+  margin-bottom: 20px;
+}
+.hidden {
+  display: none;
 }
